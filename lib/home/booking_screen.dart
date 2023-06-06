@@ -5,6 +5,7 @@ import 'package:elaajapp/home/payment_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:uuid/uuid.dart';
 
 class DateAndTime extends StatefulWidget {
   final String docid;
@@ -28,8 +29,11 @@ class _DateAndTimeState extends State<DateAndTime> {
   int _selectedDay = 2;
   int _selectedRepeat = 0;
   String _selectedHour = '19:00';
+  List list = [];
   List<int> _selectedExteraCleaning = [];
   var snap;
+  var apt;
+  bool first = false;
 
   ItemScrollController _scrollController = ItemScrollController();
 
@@ -116,6 +120,23 @@ class _DateAndTimeState extends State<DateAndTime> {
         .collection('users')
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get();
+
+    try {
+      apt = await FirebaseFirestore.instance
+          .collection('Doctors')
+          .doc(widget.docid)
+          .collection('appointment')
+          .doc('June')
+          .get();
+      print(
+          '--------------------------------------appointment -----------------------');
+      list = apt.data()!['appointments_day'];
+    } catch (e) {
+      first = true;
+      list = [];
+      print('checking err..................................................');
+      print(e);
+    }
   }
 
   //final controller = TextEditingController();
@@ -137,22 +158,60 @@ class _DateAndTimeState extends State<DateAndTime> {
 
             // FirebaseFirestore.instance
             //     .collection('Doctors').doc(widget.docid).collection('appointment').doc('${_selectedDay}').;
-            print("appointment booked");
+            var uuid = const Uuid();
+            String id = uuid.v1();
 
-            FirebaseFirestore.instance
-                .collection('users')
-                .doc(snap.data()!['uid'].toString())
-                .collection('appointment')
-                .doc('June ${_selectedDay}') // change months accordingly
-                .set({
-              'docid': widget.docid,
-              'docimage': widget.docimage,
-              'month': 'June',
-              'day': _selectedDay.toString(),
-              'time': _selectedHour.toString(),
-              'docname': widget.docname,
-              'docspec': widget.docspec,
-            });
+            if (!list.contains('$_selectedDay $_selectedHour') || first) {
+              FirebaseFirestore.instance
+                  .collection('users')
+                  .doc(snap.data()!['uid'].toString())
+                  .collection('appointment')
+                  .doc(id) // change months accordingly
+                  .set({
+                'doctorid': widget.docid,
+                'id': id,
+                'docimage': widget.docimage,
+                'month': 'June',
+                'day': _selectedDay.toString(),
+                'time': _selectedHour.toString(),
+                'docname': widget.docname,
+                'docspec': widget.docspec,
+              });
+              if (first) {
+                FirebaseFirestore.instance
+                    .collection('Doctors')
+                    .doc(widget.docid)
+                    .collection('appointment')
+                    .doc('June')
+                    .set({
+                  'appointments_day':
+                      FieldValue.arrayUnion(['$_selectedDay $_selectedHour'])
+                });
+              } else {
+                FirebaseFirestore.instance
+                    .collection('Doctors')
+                    .doc(widget.docid)
+                    .collection('appointment')
+                    .doc('June')
+                    .update({
+                  'appointments_day':
+                      FieldValue.arrayUnion(['$_selectedDay $_selectedHour'])
+                });
+              }
+            } else {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: Text("Sorry Time Slot is Already Booked"),
+                  );
+                },
+              );
+            }
+
+            //--------------------------------------
+
+//---------------------------------------
 
             // Navigator.push(
             //   context,

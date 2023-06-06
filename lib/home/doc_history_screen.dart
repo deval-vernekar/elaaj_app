@@ -302,7 +302,7 @@ class _ScheduleTabState extends State<ScheduleTab> {
                         itemCount: snapshot.data!.docs.length,
                         itemBuilder: (context, index) {
                           final snap = snapshot.data!.docs[index].data();
-                          String docid = snap['docid'];
+                          String docid = snap['id'];
                           return DoctorAppointCard(
                             snap: snap,
                             docid: docid,

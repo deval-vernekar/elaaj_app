@@ -54,6 +54,7 @@ dependencies:
   cloud_firestore: ^4.4.5
   url_launcher: ^6.1.10
   flutter_credit_card: ^3.0.6
+  uuid: ^3.0.7
 
 dev_dependencies:
   flutter_test:

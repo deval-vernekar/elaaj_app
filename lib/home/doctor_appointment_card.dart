@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elaajapp/home/doc_history_screen.dart';
 import 'package:elaajapp/home/payment_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class DoctorAppointCard extends StatefulWidget {
@@ -22,10 +23,10 @@ class _DoctorAppointCardState extends State<DoctorAppointCard> {
   }
 
   getdata() async {
-    docsnap = await FirebaseFirestore.instance
-        .collection('Doctors')
-        .doc(widget.docid)
-        .get();
+    // docsnap = await FirebaseFirestore.instance
+    //     .collection('Doctors')
+    //     //.doc(widget.docid)
+    //     .get();
   }
 
   @override
@@ -88,7 +89,14 @@ class _DoctorAppointCardState extends State<DoctorAppointCard> {
                         style: TextStyle(
                           fontSize: 12,
                         )),
-                    onPressed: () {},
+                    onPressed: () async {
+                      await FirebaseFirestore.instance
+                          .collection('users')
+                          .doc(FirebaseAuth.instance.currentUser!.uid)
+                          .collection('appointment')
+                          .doc(widget.snap['id'])
+                          .delete();
+                    },
                   ),
                 ),
                 SizedBox(
