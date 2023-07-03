@@ -296,6 +296,8 @@ class _FilesUploadPageState extends State<FilesUploadPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Color(0xff0466de),
         title: Text(
           "File Upload",
           textAlign: TextAlign.center,
@@ -309,6 +311,7 @@ class _FilesUploadPageState extends State<FilesUploadPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Color(0xff0466de)),
                   onPressed: () {
                     Navigator.push(
                         context,
@@ -320,6 +323,7 @@ class _FilesUploadPageState extends State<FilesUploadPage> {
                   child: const Text("Upload Image"),
                 ),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Color(0xff0466de)),
                   onPressed: () {
                     Navigator.push(
                         context,

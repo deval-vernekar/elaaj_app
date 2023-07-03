@@ -65,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.blue[50],
       body: SingleChildScrollView(
         child: SafeArea(
           child: Center(
@@ -79,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                 Container(
                   width: 200,
                   height: 200,
-                  child: Image.asset('asset/images/meet-doc.png'),
+                  child: Image.asset('asset/images/Doctors-bro.png'),
                 ),
 
                 const SizedBox(height: 10),

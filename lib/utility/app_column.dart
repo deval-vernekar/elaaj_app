@@ -25,7 +25,7 @@ class AppColumn extends StatelessWidget {
         //doctor name
         BigText(
           text: text,
-          size: Dimensions.font26,
+          size: Dimensions.font20,
         ),
         //SizedBox(height: Dimensions.width10,),
         SmallText(text: specilalization),

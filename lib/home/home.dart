@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
                           "Hello,",
                           style: TextStyle(
                             fontSize: Dimensions.font20,
-                            fontWeight: FontWeight.w400,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                         SizedBox(
@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage> {
                           "Welcome !",
                           style: TextStyle(
                             fontSize: Dimensions.font20,
-                            fontWeight: FontWeight.w400,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                       ],

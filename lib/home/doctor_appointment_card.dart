@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elaajapp/home/doc_history_screen.dart';
 import 'package:elaajapp/home/payment_page.dart';
+import 'package:elaajapp/home/thanks_appointment.dart';
+import 'package:elaajapp/home/thanks_payment.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -87,7 +89,7 @@ class _DoctorAppointCardState extends State<DoctorAppointCard> {
                   child: OutlinedButton(
                     child: Text('Cancel',
                         style: TextStyle(
-                          fontSize: 12,
+                          fontSize: 10,
                         )),
                     onPressed: () async {
                       await FirebaseFirestore.instance
@@ -96,6 +98,20 @@ class _DoctorAppointCardState extends State<DoctorAppointCard> {
                           .collection('appointment')
                           .doc(widget.snap['id'])
                           .delete();
+                      try {
+                        await FirebaseFirestore.instance
+                            .collection('Doctors')
+                            .doc(widget.docid)
+                            .collection('appointment')
+                            .doc('July')
+                            .update({
+                          'appointments_day': FieldValue.arrayRemove(
+                              ['${widget.snap['day']} ${widget.snap['time']}'])
+                        });
+                      } catch (e) {
+                        print('+++++++++++++++++++++++++');
+                        print(e);
+                      }
                     },
                   ),
                 ),
@@ -104,11 +120,21 @@ class _DoctorAppointCardState extends State<DoctorAppointCard> {
                 ),
                 Expanded(
                   child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(primary: Color(0xff0466de)),
                     child: Text('Reschedule',
                         style: TextStyle(
-                          fontSize: 12,
+                          fontSize: 10,
                         )),
-                    onPressed: () => {},
+                    onPressed: () => {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ThanksAppointment(
+                            title: '',
+                          ),
+                        ),
+                      )
+                    },
                   ),
                 ),
                 SizedBox(
@@ -118,7 +144,7 @@ class _DoctorAppointCardState extends State<DoctorAppointCard> {
                   child: OutlinedButton(
                     child: Text('Pay',
                         style: TextStyle(
-                          fontSize: 12,
+                          fontSize: 10,
                         )),
                     onPressed: () {
                       Navigator.push(

@@ -56,6 +56,8 @@ class _ImageUploadState extends State<ImageUpload> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Color(0xff0466de),
         title: const Text("Upload Image "),
       ),
       body: Center(
@@ -90,11 +92,15 @@ class _ImageUploadState extends State<ImageUpload> {
                                             child: Text("No image selected"))
                                         : Image.file(_image!)),
                                 ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        primary: Color(0xff0466de)),
                                     onPressed: () {
                                       imagePickerMethod();
                                     },
                                     child: const Text("Select Image")),
                                 ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        primary: Color(0xff0466de)),
                                     onPressed: () {
                                       if (_image != null) {
                                         uploadImage(_image!);

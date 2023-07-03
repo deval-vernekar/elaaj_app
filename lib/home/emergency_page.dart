@@ -105,6 +105,8 @@ class _EmergencyContactsScreenState extends State<EmergencyContactsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Color(0xff0466de),
         title: Text('Emergency Hospital Contacts'),
       ),
       body: StreamBuilder<QuerySnapshot>(
@@ -128,7 +130,10 @@ class _EmergencyContactsScreenState extends State<EmergencyContactsScreen> {
             itemBuilder: (context, index) {
               HospitalContact contact = contacts[index];
               return ListTile(
-                title: Text(contact.name),
+                title: Text(
+                  contact.name,
+                  style: TextStyle(fontWeight: FontWeight.w500),
+                ),
                 subtitle: Text(contact.phone),
                 trailing: IconButton(
                   icon: Icon(Icons.call),

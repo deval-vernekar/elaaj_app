@@ -201,16 +201,17 @@ class _ScheduleTabState extends State<ScheduleTab> {
     }).toList();
 
     return Scaffold(
+      //backgroundColor: Colors.blue[50],
       body: Padding(
         padding: const EdgeInsets.only(left: 30, top: 30, right: 30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(
-              'Schedule',
-              textAlign: TextAlign.center,
-              // style: kTitleStyle,
-            ),
+            // Text(
+            //   'Schedule',
+            //   textAlign: TextAlign.center,
+            //   // style: kTitleStyle,
+            // ),
             SizedBox(
               height: 20,
             ),
@@ -224,63 +225,74 @@ class _ScheduleTabState extends State<ScheduleTab> {
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      for (FilterStatus filterStatus in FilterStatus.values)
-                        Expanded(
-                          child: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                if (filterStatus == FilterStatus.Upcoming) {
-                                  status = FilterStatus.Upcoming;
-                                  _alignment = Alignment.centerLeft;
-                                } else if (filterStatus ==
-                                    FilterStatus.Complete) {
-                                  status = FilterStatus.Complete;
-                                  _alignment = Alignment.center;
-                                } else if (filterStatus ==
-                                    FilterStatus.Cancel) {
-                                  status = FilterStatus.Cancel;
-                                  _alignment = Alignment.centerRight;
-                                }
-                              });
-                            },
-                            child: Center(
-                              child: Text(
-                                filterStatus.name,
-                                //style: kFilterStyle,
-                              ),
-                            ),
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //     children: [
+                      //       for (FilterStatus filterStatus in FilterStatus.values)
+                      //         Expanded(
+                      //           child: GestureDetector(
+                      //             onTap: () {
+                      //               setState(() {
+                      //                 if (filterStatus == FilterStatus.Upcoming) {
+                      //                   status = FilterStatus.Upcoming;
+                      //                   _alignment = Alignment.centerLeft;
+                      //                 } else if (filterStatus ==
+                      //                     FilterStatus.Complete) {
+                      //                   status = FilterStatus.Complete;
+                      //                   _alignment = Alignment.center;
+                      //                 } else if (filterStatus ==
+                      //                     FilterStatus.Cancel) {
+                      //                   status = FilterStatus.Cancel;
+                      //                   _alignment = Alignment.centerRight;
+                      //                 }
+                      //               });
+                      //             },
+                      //             child: Center(
+                      //               child: Text(
+                      //                 filterStatus.name,
+                      //                 //style: kFilterStyle,
+                      //               ),
+                      //             ),
+                      //           ),
+                      //         ),
+                      //     ],
+                      //   ),
+                      // ),
+                      // AnimatedAlign(
+                      //   duration: Duration(milliseconds: 200),
+                      //   alignment: _alignment,
+                      //   child: Container(
+                      //     width: 100,
+                      //     height: 40,
+                      //     decoration: BoxDecoration(
+                      //       color: Color(0xFFC3CEDA),
+                      //       borderRadius: BorderRadius.circular(20),
+                      //     ),
+                      //     child: Center(
+                      //       child: Text(
+                      //         status.name,
+                      //         style: TextStyle(
+                      //           color: Colors.white,
+                      //           fontWeight: FontWeight.bold,
+                      //         ),
+                      //       ),
+                      //     ),
+                      children: [
+                        Text(
+                          'Schedule',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 15,
                           ),
                         ),
-                    ],
-                  ),
-                ),
-                AnimatedAlign(
-                  duration: Duration(milliseconds: 200),
-                  alignment: _alignment,
-                  child: Container(
-                    width: 100,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: Color(0xFFC3CEDA),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Center(
-                      child: Text(
-                        status.name,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
+                      ]),
                 )
               ],
             ),
             SizedBox(
-              height: 20,
+              height: 10,
             ),
             Expanded(
               child: StreamBuilder(

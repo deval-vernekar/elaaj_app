@@ -87,7 +87,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.blue[50],
       body: SingleChildScrollView(
         child: SafeArea(
           child: Center(
@@ -101,7 +101,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 Container(
                   width: 150,
                   height: 150,
-                  child: Image.asset('asset/images/ambulance.png'),
+                  child: Image.asset('asset/images/Doctor-pana.png'),
                 ),
 
                 const SizedBox(height: 30),
@@ -120,15 +120,16 @@ class _RegisterPageState extends State<RegisterPage> {
                 // username textfield
                 MyTextField(
                   controller: fullNameController,
-                  hintText: 'username',
+                  hintText: 'Username',
                   obscureText: false,
                 ),
 
                 // email textfield
+                const SizedBox(height: 10),
 
                 MyTextField(
                   controller: emailController,
-                  hintText: 'email id',
+                  hintText: 'Email',
                   obscureText: false,
                 ),
 
@@ -155,7 +156,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 // sign in button
                 MyButton(text: 'Sign Up', onTap: signUserUp),
 
-                const SizedBox(height: 50),
+                const SizedBox(height: 30),
 
                 // or continue with
                 Padding(
@@ -185,7 +186,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
 
-                const SizedBox(height: 30),
+                const SizedBox(height: 20),
 
                 // google + apple sign in buttons
                 Row(
@@ -204,7 +205,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ],
                 ),
 
-                const SizedBox(height: 50),
+                const SizedBox(height: 20),
 
                 // already have account? login now
                 Row(

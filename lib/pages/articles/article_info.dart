@@ -7,6 +7,7 @@ import 'package:elaajapp/utility/app_constants.dart';
 import 'package:elaajapp/utility/big_text.dart';
 import 'package:elaajapp/utility/dimensions.dart';
 import 'package:elaajapp/utility/expandable_text.dart';
+import 'package:elaajapp/utility/small_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -31,7 +32,7 @@ class _ArticleInfoState extends State<ArticleInfo> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 252, 217, 204),
+        backgroundColor: Color(0xff0466de),
         leading: GestureDetector(
           onTap: () {
             Get.toNamed(RouteHelper.initial);
@@ -92,7 +93,8 @@ class _ArticleInfoState extends State<ArticleInfo> {
                           topRight: Radius.circular(Dimensions.radius20)),
                       color: Colors.white),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       AppColumn(
                         text: 'Dr. ${widget.snap['name']}',
@@ -135,7 +137,7 @@ class _ArticleInfoState extends State<ArticleInfo> {
       ),
       //this is the bottom part of the article page that may contain link //3:47 timestamp +-
       bottomNavigationBar: Container(
-        height: 80,
+        height: 100,
         padding: EdgeInsets.only(
             top: Dimensions.height30,
             bottom: Dimensions.height30,
@@ -147,7 +149,7 @@ class _ArticleInfoState extends State<ArticleInfo> {
                 topLeft: Radius.circular(Dimensions.radius20),
                 topRight: Radius.circular(Dimensions.radius20))),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             InkWell(
               onTap: () => Navigator.of(context).push(
@@ -170,13 +172,13 @@ class _ArticleInfoState extends State<ArticleInfo> {
                 //     bottom: Dimensions.height20,
                 //     left: Dimensions.width20,
                 //     right: Dimensions.width20),
-                child: BigText(
+                child: SmallText(
                   text: "Book Appointment",
                   color: Colors.white,
                 ),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(Dimensions.radius20),
-                    color: Color(0xff5a4fcf)),
+                    color: Color(0xff0466de)),
               ),
             ),
             //SizedBox(height: 15),

@@ -23,7 +23,7 @@ class _ArticlePageBodyState extends State<ArticlePageBody> {
   var _currPageValue = 0.0;
   double _scaleFactor = 0.8;
   double _height = Dimensions.pageViewContainer;
-  TextEditingController searchController = TextEditingController();
+  TextEditingController _searchController = TextEditingController();
   List images = [];
 
   @override
@@ -40,6 +40,7 @@ class _ArticlePageBodyState extends State<ArticlePageBody> {
         // print(images);
       });
     });
+    _searchController.addListener(_onSearchChanged);
   }
 
   @override
@@ -47,6 +48,13 @@ class _ArticlePageBodyState extends State<ArticlePageBody> {
     super.dispose();
     pageController.dispose();
     //super.dispose();
+    _searchController.removeListener(_onSearchChanged);
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  _onSearchChanged() {
+    print(_searchController.text);
   }
 
   @override
@@ -108,6 +116,7 @@ class _ArticlePageBodyState extends State<ArticlePageBody> {
             ),
             child: TextField(
               onTap: () async {},
+              controller: _searchController,
               //textAlign: TextAlign.center,
               decoration: InputDecoration(
                 prefixIcon: Icon(Icons.search,
@@ -115,7 +124,7 @@ class _ArticlePageBodyState extends State<ArticlePageBody> {
                     size: Dimensions
                         .iconSize24), // for custom icon try Image.asset("asset/icons/search.png",height: 1,width: 1,),
                 border: InputBorder.none,
-                hintText: 'How can we help you?',
+                hintText: 'How can we help you ?',
               ),
             ),
           ),
@@ -134,6 +143,7 @@ class _ArticlePageBodyState extends State<ArticlePageBody> {
             children: [
               BigText(
                 text: "Available Doctor's",
+                size: Dimensions.font20,
               )
             ],
           ),

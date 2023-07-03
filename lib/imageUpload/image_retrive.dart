@@ -13,7 +13,10 @@ class _ImageRetriveState extends State<ImageRetrive> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Your Images")),
+      appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: Color(0xff0466de),
+          title: const Text("Your Images")),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
             .collection("users")

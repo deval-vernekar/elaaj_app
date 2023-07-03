@@ -1,28 +1,32 @@
-import 'package:elaajapp/utility/dimensions.dart';
 import 'package:flutter/material.dart';
 
 class AppIcon extends StatelessWidget {
-  final IconData icon;
-  final Color backgroundColor;
-  final Color iconColor;
-  final double size;
+  IconData icon;
+  Color backgroundColor;
+  double size;
+  double iconSize;
 
-  const AppIcon(
-      {Key? key,
-      required this.icon,
-      this.backgroundColor = const Color(0xFF8f837f),
-      this.iconColor = const Color(0xFF332d2b),
-      this.size = 40})
-      : super(key: key);
+  AppIcon({
+    required this.icon,
+    required this.backgroundColor,
+    required this.size,
+    required this.iconSize,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: size,
       height: size,
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(size / 2)),
-      color: backgroundColor,
-      child: Icon(icon, color: iconColor, size: Dimensions.iconSize16),
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        shape: BoxShape.circle,
+      ),
+      child: Icon(
+        icon,
+        color: Colors.white,
+        size: iconSize,
+      ),
     );
   }
 }

@@ -374,10 +374,13 @@
 
 //-----------------------------------------------------------------------------------------
 
+import 'package:elaajapp/home/thanks_appointment.dart';
+import 'package:elaajapp/home/thanks_payment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/credit_card_form.dart';
 import 'package:flutter_credit_card/credit_card_model.dart';
 import 'package:flutter_credit_card/credit_card_widget.dart';
+import 'package:get/get.dart';
 
 class PaymentPage extends StatefulWidget {
   @override
@@ -403,6 +406,11 @@ class PaymentPageState extends State<PaymentPage> {
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Color(0xff0466de),
+          centerTitle: true,
+          title: Text('Payments'),
+        ),
         resizeToAvoidBottomInset: true,
         body: SafeArea(
           child: Column(
@@ -457,7 +465,7 @@ class PaymentPageState extends State<PaymentPage> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8.0),
                           ),
-                          primary: const Color(0xff1b447b),
+                          primary: const Color(0xff0466de),
                         ),
                         child: Container(
                           margin: const EdgeInsets.all(8),
@@ -472,6 +480,9 @@ class PaymentPageState extends State<PaymentPage> {
                           ),
                         ),
                         onPressed: () {
+                          Get.to(() => ThankYouPage(
+                                title: '',
+                              ));
                           if (formKey.currentState!.validate()) {
                             print('valid!');
                           } else {

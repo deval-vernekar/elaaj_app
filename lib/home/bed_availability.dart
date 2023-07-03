@@ -102,7 +102,11 @@ class _BookingPageState extends State<BookingPage> {
 
 //       //////////////////////////////////////////////
       appBar: AppBar(
-        title: Text("Available Beds"),
+        backgroundColor: Color(0xff0466de),
+        centerTitle: true,
+        title: Text(
+          "Available Beds",
+        ),
       ),
       body: Center(
         child: isLoaded
@@ -117,29 +121,46 @@ class _BookingPageState extends State<BookingPage> {
                           borderRadius:
                               BorderRadius.circular(Dimensions.radius20)),
                       leading: const CircleAvatar(
-                        backgroundColor: Color(0xff6ae792),
+                        backgroundColor: Color(0xff0466de),
                         child: Icon(Icons.medical_information),
                       ),
                       title: Row(
                         children: [
-                          Text(items[index]["name"] ?? "Not given"),
-                          SizedBox(
-                            width: Dimensions.width10,
+                          Text(
+                            items[index]["name"] ?? "Not given",
+                            style: TextStyle(fontWeight: FontWeight.w700),
                           ),
-                          Text("icu: "),
-                          Text(items[index]["icu_beds"].toString()),
-                          SizedBox(width: Dimensions.width10),
-                          Text("gen: "),
-                          Text(items[index]["general_beds"].toString()),
-                          SizedBox(width: Dimensions.width10),
-                          Text("oxy: "),
-                          Text(items[index]["oxygen_beds"].toString()),
-                          SizedBox(width: Dimensions.width10),
-                          Text("icu: "),
-                          Text(items[index]["private_beds"].toString()),
+                          SizedBox(
+                            width: Dimensions.width5,
+                          ),
+                          Text("Icu: "),
+                          Text(
+                            items[index]["icu_beds"].toString(),
+                            style: TextStyle(fontWeight: FontWeight.w500),
+                          ),
+                          SizedBox(width: Dimensions.width5),
+                          Text("Gen: "),
+                          Text(
+                            items[index]["general_beds"].toString(),
+                            style: TextStyle(fontWeight: FontWeight.w500),
+                          ),
+                          SizedBox(width: Dimensions.width5),
+                          Text("Oxy: "),
+                          Text(
+                            items[index]["oxygen_beds"].toString(),
+                            style: TextStyle(fontWeight: FontWeight.w500),
+                          ),
+                          SizedBox(width: Dimensions.width5),
+                          Text("Pri: "),
+                          Text(
+                            items[index]["private_beds"].toString(),
+                            style: TextStyle(fontWeight: FontWeight.w500),
+                          ),
                         ],
                       ),
-                      subtitle: Text("Available beds:"),
+                      subtitle: Text(
+                        items[index]["hloc"].toString(),
+                      ),
 
                       // subtitle: Text("general:"),
                       // subtitle: Text("icu:"),
@@ -150,9 +171,10 @@ class _BookingPageState extends State<BookingPage> {
             : Text("No data"),
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Color(0xff0466de),
         onPressed: _incrementCounter,
         tooltip: 'Increment',
-        child: Icon(Icons.add),
+        child: Icon(Icons.refresh),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
