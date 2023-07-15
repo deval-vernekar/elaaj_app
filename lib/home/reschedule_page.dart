@@ -9,25 +9,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 
-class DateAndTime extends StatefulWidget {
-  final String docid;
-  final String docimage;
-  final String docspec;
-  final String docname;
+class ReschedulePage extends StatefulWidget {
+  final snap;
 
-  const DateAndTime(
-      {Key? key,
-      required this.docid,
-      required this.docimage,
-      required this.docname,
-      required this.docspec})
-      : super(key: key);
+  const ReschedulePage({
+    Key? key,
+    required this.snap,
+  }) : super(key: key);
 
   @override
-  _DateAndTimeState createState() => _DateAndTimeState();
+  _ReschedulePageState createState() => _ReschedulePageState();
 }
 
-class _DateAndTimeState extends State<DateAndTime> {
+class _ReschedulePageState extends State<ReschedulePage> {
   int _selectedDay = 2;
   int _selectedRepeat = 0;
   String _selectedHour = '19:00';
@@ -113,7 +107,7 @@ class _DateAndTimeState extends State<DateAndTime> {
       );
     });
     print('........................................');
-    print(widget.docid);
+    print(widget.snap['doctorid']);
     getData();
     super.initState();
   }
@@ -127,7 +121,7 @@ class _DateAndTimeState extends State<DateAndTime> {
     try {
       apt = await FirebaseFirestore.instance
           .collection('Doctors')
-          .doc(widget.docid)
+          .doc(widget.snap['doctorid'])
           .collection('appointment')
           .doc('July')
           .get();
@@ -173,43 +167,63 @@ class _DateAndTimeState extends State<DateAndTime> {
 
             // FirebaseFirestore.instance
             //     .collection('Doctors').doc(widget.docid).collection('appointment').doc('${_selectedDay}').;
-            var uuid = const Uuid();
-            String id = uuid.v1();
+            // var uuid = const Uuid();
+            // String id = uuid.v1();
 
             if (!list.contains('$_selectedDay $_selectedHour') || first) {
               FirebaseFirestore.instance
                   .collection('users')
                   .doc(snap.data()!['uid'].toString())
                   .collection('appointment')
-                  .doc(id) // change months accordingly
-                  .set({
-                'doctorid': widget.docid,
-                'id': id,
-                'docimage': widget.docimage,
+                  .doc(widget.snap['id']) // change months accordingly
+                  .update({
+                'doctorid': widget.snap['doctorid'],
+                'id': widget.snap['id'],
+                'docimage': widget.snap['docimage'],
                 'month': 'July',
                 'day': _selectedDay.toString(),
                 'time': _selectedHour.toString(),
-                'docname': widget.docname,
-                'docspec': widget.docspec,
+                'docname': widget.snap['docname'],
+                'docspec': widget.snap['docspec'],
               });
               if (first) {
-                print(',,,,,,,,,,,,helloxxxx,,,,,,,,,,,,,,');
-                print(widget.docid);
+                print('xxxxx,helloxxxx,,,,,,,,,,,,,,');
+                //print(widget.docid);
+
                 FirebaseFirestore.instance
                     .collection('Doctors')
-                    .doc(widget.docid)
+                    .doc(widget.snap['doctorid'])
                     .collection('appointment')
                     .doc('July')
-                    .set({
+                    .update({
+                  'appointments_day': FieldValue.arrayRemove(
+                      ['${widget.snap['day']} ${widget.snap['time']}']),
+                });
+
+                FirebaseFirestore.instance
+                    .collection('Doctors')
+                    .doc(widget.snap['doctorid'])
+                    .collection('appointment')
+                    .doc('July')
+                    .update({
                   'appointments_day':
                       FieldValue.arrayUnion(['$_selectedDay $_selectedHour'])
                 });
               } else {
                 print(',,,,,,,,,,,,hello,,,,,,,,,,,,,,,,,');
-                print(widget.docid);
+                print(widget.snap['docid']);
                 FirebaseFirestore.instance
                     .collection('Doctors')
-                    .doc(widget.docid)
+                    .doc(widget.snap['doctorid'])
+                    .collection('appointment')
+                    .doc('July')
+                    .update({
+                  'appointments_day': FieldValue.arrayRemove(
+                      ['${widget.snap['day']} ${widget.snap['time']}']),
+                });
+                FirebaseFirestore.instance
+                    .collection('Doctors')
+                    .doc(widget.snap['doctorid'])
                     .collection('appointment')
                     .doc('July')
                     .update({
@@ -246,9 +260,9 @@ class _DateAndTimeState extends State<DateAndTime> {
             //   ),
             // );
 
-            Get.to(() => ThanksAppointment(
-                  title: '',
-                ));
+            // Get.to(() => ThanksAppointment(
+            //       title: '',
+            //     ));
           },
           // icon: Icon(Icons.arrow_forward_ios),
         ),

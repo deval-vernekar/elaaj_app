@@ -44,42 +44,40 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCnl2NoKmDoTp7LBr-iYdX78zUD9h5lWoI',
-    appId: '1:108555357298:web:8b8540bb553d1b305ec6eb',
-    messagingSenderId: '108555357298',
-    projectId: 'elaaj-authentication',
-    authDomain: 'elaaj-authentication.firebaseapp.com',
-    storageBucket: 'elaaj-authentication.appspot.com',
-    measurementId: 'G-KGL6Q2ZCHN',
+    apiKey: 'AIzaSyCqp03xds5Y_hI7Q-7upWANcF-Ogdg4uhQ',
+    appId: '1:148486910775:web:714f89bd966c9cd9d260b2',
+    messagingSenderId: '148486910775',
+    projectId: 'elaaj-b8c1e',
+    authDomain: 'elaaj-b8c1e.firebaseapp.com',
+    storageBucket: 'elaaj-b8c1e.appspot.com',
+    measurementId: 'G-DHLQLH8HQG',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBqHZ6FvlNKZJtqoo-ITYesnkbygFMLiAc',
-    appId: '1:108555357298:android:6a9546356a123c285ec6eb',
-    messagingSenderId: '108555357298',
-    projectId: 'elaaj-authentication',
-    storageBucket: 'elaaj-authentication.appspot.com',
+    apiKey: 'AIzaSyAGU2-kG5w1EjuRj2RsNsdAmMVcacey8bM',
+    appId: '1:148486910775:android:0e1ad35fb0c3ad15d260b2',
+    messagingSenderId: '148486910775',
+    projectId: 'elaaj-b8c1e',
+    storageBucket: 'elaaj-b8c1e.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBdepypPHLpxFr3B5hXhCsQmt4kIC23AMA',
-    appId: '1:108555357298:ios:3641d0c69a5d9fbc5ec6eb',
-    messagingSenderId: '108555357298',
-    projectId: 'elaaj-authentication',
-    storageBucket: 'elaaj-authentication.appspot.com',
-    androidClientId: '108555357298-9us67c935jqji9gths0qe7v7s0h91c35.apps.googleusercontent.com',
-    iosClientId: '108555357298-3bd5b5a0l407ue12dtduubc06iad90s7.apps.googleusercontent.com',
+    apiKey: 'AIzaSyBn8d6mWzeINXyvaKBlZrFXj5gO4uSqtBE',
+    appId: '1:148486910775:ios:e2ebb19eb47c3b13d260b2',
+    messagingSenderId: '148486910775',
+    projectId: 'elaaj-b8c1e',
+    storageBucket: 'elaaj-b8c1e.appspot.com',
+    iosClientId: '148486910775-0ljeb4fbn0dq0nf7g8ms7nbhosgo6rs6.apps.googleusercontent.com',
     iosBundleId: 'com.example.elaajapp',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBdepypPHLpxFr3B5hXhCsQmt4kIC23AMA',
-    appId: '1:108555357298:ios:3641d0c69a5d9fbc5ec6eb',
-    messagingSenderId: '108555357298',
-    projectId: 'elaaj-authentication',
-    storageBucket: 'elaaj-authentication.appspot.com',
-    androidClientId: '108555357298-9us67c935jqji9gths0qe7v7s0h91c35.apps.googleusercontent.com',
-    iosClientId: '108555357298-3bd5b5a0l407ue12dtduubc06iad90s7.apps.googleusercontent.com',
+    apiKey: 'AIzaSyBn8d6mWzeINXyvaKBlZrFXj5gO4uSqtBE',
+    appId: '1:148486910775:ios:e2ebb19eb47c3b13d260b2',
+    messagingSenderId: '148486910775',
+    projectId: 'elaaj-b8c1e',
+    storageBucket: 'elaaj-b8c1e.appspot.com',
+    iosClientId: '148486910775-0ljeb4fbn0dq0nf7g8ms7nbhosgo6rs6.apps.googleusercontent.com',
     iosBundleId: 'com.example.elaajapp',
   );
 }

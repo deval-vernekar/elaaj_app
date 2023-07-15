@@ -170,8 +170,8 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     // google button
                     SquareTile(
-                        // onTap: () => AuthService().signInWithGoogle(),
-                        onTap: () {},
+                        onTap: () => AuthService().signInWithGoogle(),
+                        //onTap: () {},
                         imagePath: 'asset/images/google.png'),
 
                     const SizedBox(width: 25),
@@ -198,7 +198,7 @@ class _LoginPageState extends State<LoginPage> {
                           child: const Text(
                             'Register now',
                             style: TextStyle(
-                              color: Colors.blue,
+                              color: Color(0xff0466de),
                               fontWeight: FontWeight.bold,
                             ),
                           ),

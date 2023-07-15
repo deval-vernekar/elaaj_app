@@ -317,7 +317,7 @@ class _ScheduleTabState extends State<ScheduleTab> {
                           String docid = snap['id'];
                           return DoctorAppointCard(
                             snap: snap,
-                            docid: docid,
+                            //docid: docid,
                           );
                         });
                   }),

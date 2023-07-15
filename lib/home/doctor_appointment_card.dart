@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elaajapp/home/doc_history_screen.dart';
+import 'package:elaajapp/home/payment_option_page.dart';
 import 'package:elaajapp/home/payment_page.dart';
+import 'package:elaajapp/home/reschedule_page.dart';
 import 'package:elaajapp/home/thanks_appointment.dart';
 import 'package:elaajapp/home/thanks_payment.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -8,8 +10,8 @@ import 'package:flutter/material.dart';
 
 class DoctorAppointCard extends StatefulWidget {
   final snap;
-  final String docid;
-  const DoctorAppointCard({super.key, required this.docid, required this.snap});
+  //final String docid;
+  const DoctorAppointCard({super.key, required this.snap});
 
   @override
   State<DoctorAppointCard> createState() => _DoctorAppointCardState();
@@ -98,20 +100,17 @@ class _DoctorAppointCardState extends State<DoctorAppointCard> {
                           .collection('appointment')
                           .doc(widget.snap['id'])
                           .delete();
-                      try {
-                        await FirebaseFirestore.instance
-                            .collection('Doctors')
-                            .doc(widget.docid)
-                            .collection('appointment')
-                            .doc('July')
-                            .update({
-                          'appointments_day': FieldValue.arrayRemove(
-                              ['${widget.snap['day']} ${widget.snap['time']}'])
-                        });
-                      } catch (e) {
-                        print('+++++++++++++++++++++++++');
-                        print(e);
-                      }
+                      print('zzzzzzzzzzzzzzzzzzzzzz');
+                      print(widget.snap['doctorid']);
+                      await FirebaseFirestore.instance
+                          .collection('Doctors')
+                          .doc(widget.snap['doctorid'])
+                          .collection('appointment')
+                          .doc('July')
+                          .update({
+                        'appointments_day': FieldValue.arrayRemove(
+                            ['${widget.snap['day']} ${widget.snap['time']}'])
+                      });
                     },
                   ),
                 ),
@@ -126,14 +125,18 @@ class _DoctorAppointCardState extends State<DoctorAppointCard> {
                           fontSize: 10,
                         )),
                     onPressed: () => {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ThanksAppointment(
-                            title: '',
-                          ),
-                        ),
-                      )
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) => ThanksAppointment(
+                      //       title: '',
+                      //     ),
+                      //   ),
+                      // )
+
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) =>
+                              ReschedulePage(snap: widget.snap)))
                     },
                   ),
                 ),
@@ -150,7 +153,7 @@ class _DoctorAppointCardState extends State<DoctorAppointCard> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => PaymentPage(),
+                          builder: (context) => PaymentOptions(),
                         ),
                       );
                     },

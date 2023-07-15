@@ -80,7 +80,7 @@ class _ThankYouPageState extends State<ThankYouPage> {
                   Navigator.pop(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => HomePage(),
+                      builder: (context) => MainLayout(),
                     ),
                   );
                 },

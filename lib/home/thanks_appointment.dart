@@ -78,10 +78,10 @@ class _ThanksAppointmentState extends State<ThanksAppointment> {
                       fontSize: 12,
                     )),
                 onPressed: () {
-                  Navigator.pop(
+                  Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => HomePage(),
+                      builder: (context) => MainLayout(),
                     ),
                   );
                 },

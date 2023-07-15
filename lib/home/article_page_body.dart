@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:elaajapp/controllers/popular_doctor_controller.dart';
+import 'package:elaajapp/home/doctor_search_page.dart';
 import 'package:elaajapp/pages/articles/article_info.dart';
 import 'package:elaajapp/utility/app_column.dart';
 import 'package:elaajapp/utility/big_text.dart';
@@ -25,6 +26,8 @@ class _ArticlePageBodyState extends State<ArticlePageBody> {
   double _height = Dimensions.pageViewContainer;
   TextEditingController _searchController = TextEditingController();
   List images = [];
+  String name = "";
+  List<Map<String, dynamic>> data = [];
 
   @override
   void initState() {
@@ -40,7 +43,7 @@ class _ArticlePageBodyState extends State<ArticlePageBody> {
         // print(images);
       });
     });
-    _searchController.addListener(_onSearchChanged);
+    // _searchController.addListener(_onSearchChanged);
   }
 
   @override
@@ -48,14 +51,14 @@ class _ArticlePageBodyState extends State<ArticlePageBody> {
     super.dispose();
     pageController.dispose();
     //super.dispose();
-    _searchController.removeListener(_onSearchChanged);
-    _searchController.dispose();
+    // _searchController.removeListener(_onSearchChanged);
+    // _searchController.dispose();
     super.dispose();
   }
 
-  _onSearchChanged() {
-    print(_searchController.text);
-  }
+  // _onSearchChanged() {
+  //   print(_searchController.text);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -115,7 +118,12 @@ class _ArticlePageBodyState extends State<ArticlePageBody> {
               borderRadius: BorderRadius.circular(Dimensions.radius20),
             ),
             child: TextField(
-              onTap: () async {},
+              onTap: () async {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SearchDoctors()),
+                );
+              },
               controller: _searchController,
               //textAlign: TextAlign.center,
               decoration: InputDecoration(

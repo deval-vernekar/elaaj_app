@@ -56,6 +56,9 @@ dependencies:
   flutter_credit_card: ^3.0.6
   uuid: ^3.0.7
   flutter_local_notifications: ^14.1.1
+  google_sign_in: ^6.1.4
+  upi_india: ^3.0.1
+  
 
 dev_dependencies:
   flutter_test:

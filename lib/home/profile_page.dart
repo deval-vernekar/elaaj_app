@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elaajapp/utility/account_widget.dart';
 import 'package:elaajapp/utility/app_icon.dart';
 import 'package:elaajapp/utility/big_text.dart';
@@ -16,10 +17,39 @@ import 'package:flutter/material.dart';
 // class _ProfilePageState extends State<ProfilePage> {
 //signuser out method
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  var snap;
+  String uid = FirebaseAuth.instance.currentUser!.uid;
+  String name = "";
+  String email = "";
+
   void signUserOut() {
     FirebaseAuth.instance.signOut();
+  }
+//   void signOutGoogle() async{
+//   await GoogleSignIn.signOut();
+//   print("User Sign Out");
+// }
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  getData() async {
+    snap = await FirebaseFirestore.instance.collection('users').doc(uid).get();
+    setState(() {
+      name = snap.data()!['name'];
+      email = snap.data()!['email'];
+    });
   }
 
   @override
@@ -64,7 +94,7 @@ class ProfilePage extends StatelessWidget {
                     size: Dimensions.height10 * 5,
                     iconSize: Dimensions.height10 * 5 / 2,
                   ),
-                  bigText: BigText(text: "name")),
+                  bigText: BigText(text: name)),
               SizedBox(
                 height: Dimensions.height20,
               ),
@@ -76,7 +106,7 @@ class ProfilePage extends StatelessWidget {
                     size: Dimensions.height10 * 5,
                     iconSize: Dimensions.height10 * 5 / 2,
                   ),
-                  bigText: BigText(text: "email")),
+                  bigText: BigText(text: email)),
               SizedBox(
                 height: Dimensions.height20,
               ),
@@ -88,7 +118,7 @@ class ProfilePage extends StatelessWidget {
                     size: Dimensions.height10 * 5,
                     iconSize: Dimensions.height10 * 5 / 2,
                   ),
-                  bigText: BigText(text: "uid")),
+                  bigText: BigText(text: uid.toLowerCase())),
               SizedBox(
                 height: Dimensions.height20,
               ),
@@ -104,6 +134,7 @@ class ProfilePage extends StatelessWidget {
               SizedBox(
                 height: Dimensions.height20,
               ),
+              //ElevatedButton(onPressed: () {}, child: Text("Click"))
             ],
           ),
         ),
