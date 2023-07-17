@@ -1,7 +1,7 @@
 # elaajapp
 
-A new Flutter project.
-
+Our app is healthcare app that allows doctor appointment booking, bed availability, report upload and articles viewing capability.
+The app is also developed using flutter and firebase. 
 ## Getting Started
 
 This project is a starting point for a Flutter application.
