@@ -54,6 +54,7 @@
 // }
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:elaajapp/pages/articles/article_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -99,17 +100,18 @@ class _SearchDoctorsState extends State<SearchDoctors> {
             ),
           ),
         ),
-        body: StreamBuilder<QuerySnapshot>(
+        body: StreamBuilder(
           stream: FirebaseFirestore.instance.collection('Doctors').snapshots(),
-          builder: (context, snapshots) {
-            return (snapshots.connectionState == ConnectionState.waiting)
+          builder: (context,
+              AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+            return (snapshot.connectionState == ConnectionState.waiting)
                 ? Center(
                     child: CircularProgressIndicator(),
                   )
                 : ListView.builder(
-                    itemCount: snapshots.data!.docs.length,
+                    itemCount: snapshot.data!.docs.length,
                     itemBuilder: (context, index) {
-                      var data = snapshots.data!.docs[index].data()
+                      var data = snapshot.data!.docs[index].data()
                           as Map<String, dynamic>;
                       if (name.isEmpty) {
                         return ListTile(
@@ -130,18 +132,26 @@ class _SearchDoctorsState extends State<SearchDoctors> {
                           .toString()
                           .toLowerCase()
                           .startsWith(name.toLowerCase())) {
-                        return ListTile(
-                          title: Text(
-                            data['name'],
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 22,
-                                fontWeight: FontWeight.w500),
+                        return InkWell(
+                          onTap: () =>
+                              Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => ArticleInfo(
+                                pageId: 1,
+                                snap: snapshot.data!.docs[index].data()),
+                          )),
+                          child: ListTile(
+                            title: Text(
+                              data['name'],
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            leading: CircleAvatar(
+                                backgroundImage: NetworkImage(data['image'])),
                           ),
-                          leading: CircleAvatar(
-                              backgroundImage: NetworkImage(data['image'])),
                         );
                       }
                       return Container();

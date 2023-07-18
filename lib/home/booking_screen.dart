@@ -156,7 +156,7 @@ class _DateAndTimeState extends State<DateAndTime> {
         backgroundColor: Colors.white,
         floatingActionButton: FloatingActionButton.extended(
           backgroundColor: Color(0xff0466de),
-          label: Text('Book Appointment'),
+          label: Text('Book App'),
           onPressed: () {
             // Notificationservices.showNotification(
             //     title: 'Appointment Booked',
@@ -217,6 +217,9 @@ class _DateAndTimeState extends State<DateAndTime> {
                       FieldValue.arrayUnion(['$_selectedDay $_selectedHour'])
                 });
               }
+              Get.to(() => ThanksAppointment(
+                    title: '',
+                  ));
             } else {
               showDialog(
                 context: context,
@@ -245,10 +248,6 @@ class _DateAndTimeState extends State<DateAndTime> {
             //     builder: (context) => PaymentPage(),
             //   ),
             // );
-
-            Get.to(() => ThanksAppointment(
-                  title: '',
-                ));
           },
           // icon: Icon(Icons.arrow_forward_ios),
         ),

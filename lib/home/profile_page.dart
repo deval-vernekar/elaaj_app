@@ -6,6 +6,7 @@ import 'package:elaajapp/utility/colors.dart';
 import 'package:elaajapp/utility/dimensions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 // class ProfilePage extends StatefulWidget {
 //   const ProfilePage({super.key});
@@ -30,13 +31,11 @@ class _ProfilePageState extends State<ProfilePage> {
   String name = "";
   String email = "";
 
-  void signUserOut() {
-    FirebaseAuth.instance.signOut();
+  void signUserOut() async {
+    final GoogleSignIn googleSignIn = GoogleSignIn();
+    await FirebaseAuth.instance.signOut();
+    await googleSignIn.signOut();
   }
-//   void signOutGoogle() async{
-//   await GoogleSignIn.signOut();
-//   print("User Sign Out");
-// }
 
   @override
   void initState() {

@@ -40,16 +40,19 @@ class PaymentPageState extends State<PaymentPage> {
         body: SafeArea(
           child: Column(
             children: <Widget>[
-              CreditCardWidget(
-                height: 180,
-                cardNumber: cardNumber,
-                expiryDate: expiryDate,
-                cardHolderName: cardHolderName,
-                cvvCode: cvvCode,
-                showBackView: isCvvFocused,
-                obscureCardNumber: true,
-                obscureCardCvv: true,
-                onCreditCardWidgetChange: (CreditCardBrand) {},
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CreditCardWidget(
+                  height: 180,
+                  cardNumber: cardNumber,
+                  expiryDate: expiryDate,
+                  cardHolderName: cardHolderName,
+                  cvvCode: cvvCode,
+                  showBackView: isCvvFocused,
+                  obscureCardNumber: true,
+                  obscureCardCvv: true,
+                  onCreditCardWidgetChange: (CreditCardBrand) {},
+                ),
               ),
               Expanded(
                 child: SingleChildScrollView(
